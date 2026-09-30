@@ -85,6 +85,11 @@ The database schema is currently under development and will be expanded as new f
 
 More tables and relationships will be added as the platform develops.
 
+### Authentication
+
+- bcrypt for password hashing
+- JWT authentication — planned
+
 ### Planned Services
 - Cloudinary / Cloud storage for photographs
 - Vercel for frontend deployment
@@ -92,7 +97,7 @@ More tables and relationships will be added as the platform develops.
 
 ## 🗄️ Database Structure
 
-Current/Initial database structure:
+Initial database structure:
 
 ```text
 users
@@ -104,6 +109,7 @@ users
   │              └── comments
   │
   └── follows
+```
 
 ## 🚧 Project Status
 
@@ -115,17 +121,21 @@ This project is currently under active development.
 - [x] PostgreSQL setup
 - [x] Database connection
 - [x] Initial database schema
+- [x] User registration API
+- [x] Password hashing with bcrypt
+- [x] User login API
+- [x] Password verification
 
 ### Upcoming
-- [ ] User registration
-- [ ] Password hashing
-- [ ] Login & authentication
+- [ ] JWT authentication
 - [ ] Photographer profiles
 - [ ] Collection management
 - [ ] Photo upload
 - [ ] Cloud photo storage
-- [ ] Public/private photos
-- [ ] Likes & comments
+- [ ] Public/private photo access
+- [ ] Public photography feed
+- [ ] Likes & comments API
 - [ ] Follow system
 - [ ] Search & discovery
+- [ ] Photo bookmarking
 - [ ] Photo version history
