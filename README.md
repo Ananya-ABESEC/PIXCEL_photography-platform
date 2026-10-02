@@ -24,19 +24,21 @@ The concept is inspired by GitHub's organization and versioning philosophy, but 
 ## ✨ Planned Features
 
 ### 👤 Photographer Profiles
-- User registration and login
-- Photographer username
-- Profile photo
-- Bio
-- Follow photographers
+- [x] User registration and login
+- [x] Photographer username
+- [x] View photographer profile
+- [ ] Update profile
+- [ ] Profile photo
+- [ ] Bio
+- [ ] Follow photographers
 
 ### 📁 Collections
 - [x] Create collections
 - [ ] Add photographs to collections
 - [ ] Public/private visibility
 - [ ] Organize work by theme, location, event, or project
-- [ ] View photographer's collections
-- [ ] Update and delete collections
+- [x] View photographer's collections
+- [x] Update and delete collections
 
 ### 📸 Photography
 - Upload photographs
@@ -52,10 +54,10 @@ The concept is inspired by GitHub's organization and versioning philosophy, but 
 - Discover public photography
 
 ### 🔐 Privacy
-- Private collections
-- Private photographs
-- Original files remain protected
-- Display copies can be used for public viewing
+- [ ] Private collections
+- [ ] Private photographs
+- [ ] Original files remain protected
+- [ ] Display copies can be used for public viewing
 
 ## 🛠️ Tech Stack
 
@@ -89,14 +91,20 @@ The database schema is currently under development and will be expanded as new f
 
 More tables and relationships will be added as the platform develops.
 
-### Authentication
+## 🔐 Authentication
 
-The backend currently supports secure user authentication.
+The backend currently supports secure user authentication using:
+
+- bcrypt for password hashing
+- JSON Web Tokens (JWT) for authentication
+- Protected API routes
+- User-specific collection access
+- User-specific profile access
 
 ### Planned
-- Role-based authorization
-- Persistent login handling
-- Protected access to private resources
+- [ ] Role-based authorization
+- [ ] Persistent login handling
+- [ ] Protected access to private resources
 
 ## ☁️ Planned Services
 - Cloudinary / Cloud storage for photographs
@@ -136,11 +144,15 @@ This project is currently under active development.
 - [x] JWT authentication
 - [x] JWT protected routes
 - [x] Collection creation API
+- [x] View collections API
+- [x] Update collection API
+- [x] Delete collection API
+- [x] View photographer profile API
 
 ### Upcoming
-- [ ] View collections
-- [ ] Update and delete collections
-- [ ] Photographer profiles
+- [ ] Update photographer profile
+- [ ] Profile photo upload
+- [ ] Add photographs to collections
 - [ ] Photo upload
 - [ ] Cloud photo storage
 - [ ] Public/private photo access
