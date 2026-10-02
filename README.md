@@ -31,10 +31,12 @@ The concept is inspired by GitHub's organization and versioning philosophy, but 
 - Follow photographers
 
 ### 📁 Collections
-- Create collections
-- Add photographs to collections
-- Public/private visibility
-- Organize work by theme, location, event, or project
+- [x] Create collections
+- [ ] Add photographs to collections
+- [ ] Public/private visibility
+- [ ] Organize work by theme, location, event, or project
+- [ ] View photographer's collections
+- [ ] Update and delete collections
 
 ### 📸 Photography
 - Upload photographs
@@ -67,6 +69,8 @@ The concept is inspired by GitHub's organization and versioning philosophy, but 
 ### Backend
 - Node.js
 - Express.js
+- bcrypt
+- JSON Web Token (JWT)
 
 ## 🗄️ Database
 
@@ -87,10 +91,14 @@ More tables and relationships will be added as the platform develops.
 
 ### Authentication
 
-- bcrypt for password hashing
-- JWT authentication — planned
+The backend currently supports secure user authentication.
 
-### Planned Services
+### Planned
+- Role-based authorization
+- Persistent login handling
+- Protected access to private resources
+
+## ☁️ Planned Services
 - Cloudinary / Cloud storage for photographs
 - Vercel for frontend deployment
 - Render for backend deployment
@@ -125,11 +133,14 @@ This project is currently under active development.
 - [x] Password hashing with bcrypt
 - [x] User login API
 - [x] Password verification
+- [x] JWT authentication
+- [x] JWT protected routes
+- [x] Collection creation API
 
 ### Upcoming
-- [ ] JWT authentication
+- [ ] View collections
+- [ ] Update and delete collections
 - [ ] Photographer profiles
-- [ ] Collection management
 - [ ] Photo upload
 - [ ] Cloud photo storage
 - [ ] Public/private photo access
