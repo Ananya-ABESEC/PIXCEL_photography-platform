@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const pool = require("./db");
 const authRoutes = require("./routes/authRoutes");
+const authMiddleware = require("./middleware/authMiddleware");
+const collectionRoutes = require("./routes/collectionRoutes");
 
 const app = express();
 
@@ -9,6 +11,14 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/collections", collectionRoutes);
+
+app.get("/api/protected", authMiddleware, (req, res) => {
+  res.json({
+    message: "You have accessed a protected route!",
+    user: req.user,
+  });
+});
 
 pool.query("SELECT NOW()", (err, result) => {
   if (err) {
