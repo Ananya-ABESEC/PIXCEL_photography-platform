@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const pool = require("../db");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -111,6 +112,35 @@ router.post("/login", async (req, res) => {
 
   } catch (error) {
     console.error("Login error:", error);
+
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
+
+// Get logged-in user's profile
+router.get("/profile", authMiddleware, async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT id, name, username, email, profile_photo, bio, created_at
+       FROM users
+       WHERE id = $1`,
+      [req.user.id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      user: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error("Get profile error:", error);
 
     res.status(500).json({
       message: "Server error",
