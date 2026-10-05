@@ -27,25 +27,26 @@ The concept is inspired by GitHub's organization and versioning philosophy, but 
 - [x] User registration and login
 - [x] Photographer username
 - [x] View photographer profile
-- [ ] Update profile
+- [x] Update profile
 - [ ] Profile photo
-- [ ] Bio
+- [x] Bio
 - [ ] Follow photographers
 
 ### 📁 Collections
 - [x] Create collections
-- [ ] Add photographs to collections
-- [ ] Public/private visibility
+- [x] Add photographs to collections
+- [x] Public/private visibility
 - [ ] Organize work by theme, location, event, or project
 - [x] View photographer's collections
 - [x] Update and delete collections
 
 ### 📸 Photography
-- Upload photographs
-- Preserve original files
-- Generate separate display copies
-- Public/private visibility
-- Photo descriptions and titles
+- [x] Add photographs to collections through the Photo API
+- [ ] Upload photograph files from the frontend
+- [ ] Preserve original files in cloud storage
+- [ ] Generate separate display copies
+- [x] Public/private visibility
+- [x] Photo descriptions and titles
 
 ### ❤️ Community
 - Like photographs
@@ -148,13 +149,20 @@ This project is currently under active development.
 - [x] Update collection API
 - [x] Delete collection API
 - [x] View photographer profile API
+- [x] Update photographer profile API
+- [x] Collection details API
+- [x] Collection details frontend
+- [x] Photo creation API
+- [x] Photo upload form
+- [x] Display photos inside collections
 
 ### Upcoming
-- [ ] Update photographer profile
 - [ ] Profile photo upload
-- [ ] Add photographs to collections
-- [ ] Photo upload
+- [ ] Organize work by theme, location, event, or project
+- [ ] Real photograph file upload
 - [ ] Cloud photo storage
+- [ ] Preserve original files separately
+- [ ] Generate separate display copies
 - [ ] Public/private photo access
 - [ ] Public photography feed
 - [ ] Likes & comments API
