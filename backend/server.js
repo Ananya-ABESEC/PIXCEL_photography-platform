@@ -4,6 +4,7 @@ const pool = require("./db");
 const authRoutes = require("./routes/authRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 const collectionRoutes = require("./routes/collectionRoutes");
+const photoRoutes = require("./routes/photoRoutes");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/collections", collectionRoutes);
+app.use("/api/photos", photoRoutes);
 
 app.get("/api/protected", authMiddleware, (req, res) => {
   res.json({

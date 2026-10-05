@@ -148,4 +148,44 @@ router.get("/profile", authMiddleware, async (req, res) => {
   }
 });
 
+// Update logged-in user's profile
+router.put("/profile", authMiddleware, async (req, res) => {
+  try {
+    const { name, bio } = req.body;
+
+    if (!name) {
+      return res.status(400).json({
+        message: "Name is required",
+      });
+    }
+
+    const result = await pool.query(
+      `UPDATE users
+       SET name = $1,
+           bio = $2
+       WHERE id = $3
+       RETURNING id, name, username, email, profile_photo, bio, created_at`,
+      [name, bio || null, req.user.id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      user: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error("Update profile error:", error);
+
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
+
 module.exports = router;

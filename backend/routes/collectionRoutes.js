@@ -65,6 +65,37 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
+// Get a single collection
+router.get("/:id", authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await pool.query(
+      `SELECT id, name, description, visibility, created_at
+       FROM collections
+       WHERE id = $1 AND user_id = $2`,
+      [id, req.user.id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "Collection not found or access denied",
+      });
+    }
+
+    res.status(200).json({
+      collection: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error("Get collection error:", error);
+
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
+
 // Update a collection
 router.put("/:id", authMiddleware, async (req, res) => {
   try {
