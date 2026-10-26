@@ -1,68 +1,84 @@
-# 📸 Photography Platform
+# 📸 Pixcel — Photography Platform
 
 Inspired by GitHub's approach to organization and versioning, but designed for photographers.
 
-The platform allows photographers to preserve their original photographs, organize them into collections, and selectively share their work with a photography community.
+Pixcel is a photography platform in development where photographers can organize their work into collections, manage their profiles, and selectively share photographs with a community while keeping original files protected.
 
-## 💡 Idea
+## 💡 Project Idea
 
-Photographers often have large collections of photographs that they want to preserve while only sharing selected work publicly.
+Photographers often have large collections of photographs that they want to preserve, organize, and share selectively.
 
-This platform provides a single place to:
+Pixcel aims to provide a single platform to:
 
-- Upload and preserve original photographs
-- Organize photographs into collections
-- Keep collections private or make them public
-- Share photographs with a photography community
-- Like and comment on photographs
-- Follow other photographers
-- Maintain photographer profiles
-- Preserve the original uploaded file separately from display copies
+- Upload and organize photographs into collections.
+- Manage photographer profiles.
+- Choose between public and private collections and photographs.
+- Preserve original photographs separately from display copies.
+- Share selected work with a photography community.
+- Interact with other photographers through likes, comments, and follows.
+- Explore and discover photography from other creators.
 
-The concept is inspired by GitHub's organization and versioning philosophy, but designed for photographers instead of developers.
+The project takes inspiration from GitHub's organization and versioning philosophy, adapting it to photography workflows.
 
-## ✨ Planned Features
+## ✨ Features and Progress
 
 ### 👤 Photographer Profiles
-- [x] User registration and login
-- [x] Photographer username
+
+- [x] User registration and login APIs
+- [x] Password hashing using bcrypt
+- [x] JWT-based authentication
 - [x] View photographer profile
-- [x] Update profile
-- [ ] Profile photo
-- [x] Bio
+- [x] Update photographer profile
+- [x] Photographer username and bio
+- [ ] Profile photo upload
 - [ ] Follow photographers
 
 ### 📁 Collections
+
 - [x] Create collections
-- [x] Add photographs to collections
-- [x] Public/private visibility
-- [ ] Organize work by theme, location, event, or project
 - [x] View photographer's collections
-- [x] Update and delete collections
+- [x] View collection details
+- [x] Update collections
+- [x] Delete collections
+- [x] Public/private visibility setting
+- [x] Frontend collection management
+- [ ] Filter and organize work by theme, location, event, or project
 
 ### 📸 Photography
-- [x] Add photographs to collections through the Photo API
-- [ ] Upload photograph files from the frontend
-- [ ] Preserve original files in cloud storage
-- [ ] Generate separate display copies
-- [x] Public/private visibility
-- [x] Photo descriptions and titles
+
+- [x] Photo creation API
+- [x] Photo upload form in the frontend
+- [x] Add photographs to collections through the API
+- [x] Display photographs inside collections
+- [x] Photo titles and descriptions
+- [x] Photo visibility metadata
+- [ ] Complete and verify real photograph file uploads
+- [ ] Cloudinary integration for photograph storage
+- [ ] Preserve original files separately from display copies
+- [ ] Generate optimized display copies
+- [ ] Enforce public/private access for photographs
 
 ### ❤️ Community
-- Like photographs
-- Comment on photographs
-- Follow photographers
-- Discover public photography
 
-### 🔐 Privacy
-- [ ] Private collections
-- [ ] Private photographs
-- [ ] Original files remain protected
-- [ ] Display copies can be used for public viewing
+- [ ] Public photography feed
+- [ ] Like photographs
+- [ ] Comment on photographs
+- [ ] Follow photographers
+- [ ] Search and discover photography
+- [ ] Bookmark photographs
 
-## 🛠️ Tech Stack
+### 🔐 Privacy and Versioning
+
+- [ ] Enforce private collection access
+- [ ] Enforce private photograph access
+- [ ] Protect original files from unauthorized access
+- [ ] Separate original files from public display copies
+- [ ] Photo version history
+
+## 🛠️ Technology Stack
 
 ### Frontend
+
 - React
 - Vite
 - JavaScript
@@ -70,103 +86,105 @@ The concept is inspired by GitHub's organization and versioning philosophy, but 
 - CSS
 
 ### Backend
+
 - Node.js
 - Express.js
 - bcrypt
 - JSON Web Token (JWT)
+- Cloudinary integration (being developed)
 
-## 🗄️ Database
+### Database
 
-The project currently uses PostgreSQL for storing application data.
+- PostgreSQL
 
-The database schema is currently under development and will be expanded as new features are implemented.
+### Planned Deployment
 
-### Current Tables
-
-- Users
-- Collections
-- Photos
-- Likes
-- Comments
-- Follows
-
-More tables and relationships will be added as the platform develops.
-
-## 🔐 Authentication
-
-The backend currently supports secure user authentication using:
-
-- bcrypt for password hashing
-- JSON Web Tokens (JWT) for authentication
-- Protected API routes
-- User-specific collection access
-- User-specific profile access
-
-### Planned
-- [ ] Role-based authorization
-- [ ] Persistent login handling
-- [ ] Protected access to private resources
-
-## ☁️ Planned Services
-- Cloudinary / Cloud storage for photographs
-- Vercel for frontend deployment
-- Render for backend deployment
+- Vercel — frontend
+- Render — backend
 
 ## 🗄️ Database Structure
 
-Initial database structure:
+The application uses PostgreSQL to store application data.
+
+The planned relationships between the main entities are:
 
 ```text
 users
-  │
-  ├── collections
-  │       │
-  │       └── photos
-  │              ├── likes
-  │              └── comments
-  │
-  └── follows
+  |
+  |--- collections
+  |       |
+  |       |--- photos
+  |              |--- likes
+  |              |--- comments
+  |
+  |--- follows
 ```
 
-## 🚧 Project Status
+The database schema will continue to evolve as additional features are implemented.
 
-This project is currently under active development.
+## 🔐 Authentication and Authorization
+
+The backend includes:
+
+- Password hashing with bcrypt.
+- User login and registration endpoints.
+- JWT generation and verification.
+- Protected API routes.
+- User-specific collection access.
+- Photographer profile endpoints.
+
+Further work is needed to verify and complete authorization across all private resources, including photographs and original files.
+
+## ☁️ Photograph Storage
+
+Cloudinary is being integrated to support cloud-based photograph storage.
+
+The intended workflow is to preserve the uploaded original separately and use a distinct display copy when photographs are shared publicly.
+
+Access control, original-file protection, and display-copy generation remain part of the development roadmap.
+
+## 🚧 Current Project Status
+
+**Pixcel is under active development.**
+
+The core application structure, authentication APIs, collection management, photographer profile APIs, and initial photography workflows have been implemented.
+
+The frontend is functional in parts but is still being developed. The current focus is on completing core functionality before spending more time on UI styling.
 
 ### Completed
+
 - [x] React + Vite frontend setup
 - [x] Node.js + Express backend setup
-- [x] PostgreSQL setup
-- [x] Database connection
+- [x] PostgreSQL database connection
 - [x] Initial database schema
-- [x] User registration API
-- [x] Password hashing with bcrypt
-- [x] User login API
-- [x] Password verification
-- [x] JWT authentication
-- [x] JWT protected routes
-- [x] Collection creation API
-- [x] View collections API
-- [x] Update collection API
-- [x] Delete collection API
-- [x] View photographer profile API
-- [x] Update photographer profile API
-- [x] Collection details API
+- [x] User registration and login APIs
+- [x] Password hashing and verification
+- [x] JWT authentication and protected routes
+- [x] Collection creation, retrieval, updating, and deletion APIs
+- [x] Photographer profile retrieval and update APIs
 - [x] Collection details frontend
 - [x] Photo creation API
 - [x] Photo upload form
-- [x] Display photos inside collections
+- [x] Display photographs inside collections
+- [x] Initial Cloudinary connection setup
 
-### Upcoming
-- [ ] Profile photo upload
-- [ ] Organize work by theme, location, event, or project
-- [ ] Real photograph file upload
-- [ ] Cloud photo storage
-- [ ] Preserve original files separately
-- [ ] Generate separate display copies
-- [ ] Public/private photo access
-- [ ] Public photography feed
-- [ ] Likes & comments API
-- [ ] Follow system
-- [ ] Search & discovery
-- [ ] Photo bookmarking
-- [ ] Photo version history
+### Next Steps
+
+- [ ] Verify end-to-end photograph file uploads
+- [ ] Complete cloud storage integration
+- [ ] Protect original photograph files
+- [ ] Implement and verify public/private access controls
+- [ ] Complete remaining frontend functionality
+- [ ] Add profile photo upload
+- [ ] Build the public photography feed
+- [ ] Implement likes and comments
+- [ ] Implement the follow system
+- [ ] Add search, discovery, and bookmarking
+- [ ] Explore photo version history
+- [ ] Deploy the application
+
+## 🎯 Project Goal
+
+The goal of Pixcel is to create a photography-focused platform that combines organized collections, secure file preservation, selective sharing, and community interaction in one place.
+
+More features will be added incrementally as development continues.
