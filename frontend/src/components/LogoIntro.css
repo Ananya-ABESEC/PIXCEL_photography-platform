@@ -1,0 +1,61 @@
+
+/* Static full-screen intro */
+.pixcel-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #302219;
+}
+
+/* Camera and wordmark stay centered */
+.pixcel-intro-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 360px;
+  height: 90px;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+}
+
+/* Camera */
+.pixcel-intro-camera {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+/* Wordmark */
+.pixcel-intro-wordmark {
+  color: #f7f1e8;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+
+/* Mobile layout */
+@media (max-width: 520px) {
+  .pixcel-intro-logo {
+    width: 90vw;
+    height: 80px;
+    gap: 10px;
+  }
+
+  .pixcel-intro-camera {
+    width: 58px;
+    height: 58px;
+  }
+
+  .pixcel-intro-wordmark {
+    font-size: 26px;
+    letter-spacing: 0.1em;
+  }
+}

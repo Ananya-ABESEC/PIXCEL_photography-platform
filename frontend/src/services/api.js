@@ -62,19 +62,18 @@ export const getCollectionById = async (id) => {
 export const createPhoto = async (photoData) => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch(`${API_URL}/photos`, {
+  const response = await fetch("http://localhost:5000/api/photos", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(photoData),
+    body: photoData,
   });
 
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Failed to add photo");
+    throw new Error(data.message || "Failed to upload photo");
   }
 
   return data.photo;
@@ -100,4 +99,42 @@ export const getPhotosByCollection = async (collectionId) => {
   }
 
   return data.photos;
+};
+
+export const updatePhoto = async (photoId, updates) => {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(
+    `http://localhost:5000/api/photos/${photoId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updates),
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to update photo");
+  }
+
+  return data.photo;
+};
+
+export const getCollectionCoverPhoto = async (collectionId) => {
+  const photos = await getPhotosByCollection(collectionId);
+
+  if (!Array.isArray(photos) || photos.length === 0) {
+    return null;
+  }
+
+  return (
+    photos[0].display_file_url ||
+    photos[0].original_file_url ||
+    null
+  );
 };

@@ -8,30 +8,34 @@ function UploadPhoto() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [originalFileUrl, setOriginalFileUrl] = useState("");
-  const [displayFileUrl, setDisplayFileUrl] = useState("");
+  const [photo, setPhoto] = useState(null);
   const [visibility, setVisibility] = useState("private");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await createPhoto({
-        collection_id: id,
-        title,
-        description,
-        original_file_url: originalFileUrl,
-        display_file_url: displayFileUrl,
-        visibility,
-      });
+    if (!photo) {
+      setMessage("Please select a photograph.");
+      return;
+    }
 
-      setMessage("Photo added successfully!");
+    try {
+      const formData = new FormData();
+
+      formData.append("collection_id", id);
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("visibility", visibility);
+      formData.append("photo", photo);
+
+      await createPhoto(formData);
+
+      setMessage("Photo uploaded successfully!");
 
       setTimeout(() => {
         navigate(`/collections/${id}`);
       }, 1000);
-
     } catch (error) {
       console.error("Upload photo error:", error);
       setMessage(error.message);
@@ -45,48 +49,66 @@ function UploadPhoto() {
       <p>Collection ID: {id}</p>
 
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Photo Title</label>
+          <br />
+          <input
+            type="text"
+            placeholder="Enter photo title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Photo title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        <br />
 
-        <textarea
-          placeholder="Photo description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <div>
+          <label>Description</label>
+          <br />
+          <textarea
+            placeholder="Describe your photograph"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="url"
-          placeholder="Original photo URL"
-          value={originalFileUrl}
-          onChange={(e) => setOriginalFileUrl(e.target.value)}
-          required
-        />
+        <br />
 
-        <input
-          type="url"
-          placeholder="Display photo URL"
-          value={displayFileUrl}
-          onChange={(e) => setDisplayFileUrl(e.target.value)}
-        />
+        <div>
+          <label>Select Photograph</label>
+          <br />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setPhoto(e.target.files[0])}
+            required
+          />
+        </div>
 
-        <select
-          value={visibility}
-          onChange={(e) => setVisibility(e.target.value)}
-        >
-          <option value="private">Private</option>
-          <option value="public">Public</option>
-        </select>
+        <br />
 
-        <button type="submit">
-          Add Photograph
-        </button>
+        {photo && (
+          <p>
+            Selected file: <strong>{photo.name}</strong>
+          </p>
+        )}
 
+        <div>
+          <label>Visibility</label>
+          <br />
+          <select
+            value={visibility}
+            onChange={(e) => setVisibility(e.target.value)}
+          >
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+          </select>
+        </div>
+
+        <br />
+
+        <button type="submit">Upload Photograph</button>
       </form>
 
       {message && <p>{message}</p>}

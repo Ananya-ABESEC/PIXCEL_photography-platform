@@ -1,0 +1,51 @@
+
+.pixcel-brand-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background: #f7f1e8;
+  border-bottom: 1px solid #e5d9c9;
+}
+
+.pixcel-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #49372b;
+  text-decoration: none;
+}
+
+.pixcel-brand-lockup img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.pixcel-brand-lockup span {
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+@media (max-width: 520px) {
+  .pixcel-brand-header {
+    height: 66px;
+    padding: 0 14px;
+  }
+
+  .pixcel-brand-lockup img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .pixcel-brand-lockup span {
+    font-size: 18px;
+    letter-spacing: 0.12em;
+  }
+}

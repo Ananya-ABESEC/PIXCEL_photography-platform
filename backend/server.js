@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const pool = require("./db");
+const cloudinary = require("./cloudinary");
+
 const authRoutes = require("./routes/authRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 const collectionRoutes = require("./routes/collectionRoutes");
@@ -35,6 +37,14 @@ app.get("/", (req, res) => {
     message: "Photography Platform API is running!"
   });
 });
+
+cloudinary.api.ping()
+  .then(() => {
+    console.log("Cloudinary connection successful!");
+  })
+  .catch((error) => {
+    console.error("Cloudinary connection failed:", error.message);
+  });
 
 const PORT = 5000;
 
